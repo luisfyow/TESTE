@@ -26,7 +26,8 @@
   --serif: 'Cormorant Garamond', 'Times New Roman', serif;
   --display: 'Noto Serif', 'Cormorant Garamond', serif;
   --sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --accent: #4E8FA3;
+  --accent: #C8323A;
+  --accent-dark: #A62830;
   --maxw: 1180px;
   --ease: cubic-bezier(.22,.9,.32,1);
 }
@@ -109,16 +110,18 @@ nav.mainnav a:hover::after{width:100%;}
   background:var(--navy); color:var(--cream); padding:150px 0 90px; overflow:hidden;
 }
 .hero-bg-lines{position:absolute; inset:0; opacity:.5; pointer-events:none;}
-.hero-whale{animation: whale-swim 22s ease-in-out infinite; transform-origin:center; transform-box:fill-box;}
-@keyframes whale-swim{
-  0%{transform:translate(0,0) rotate(0deg);}
-  25%{transform:translate(38px,-16px) rotate(-2deg);}
-  50%{transform:translate(70px,4px) rotate(1deg);}
-  75%{transform:translate(30px,18px) rotate(-1deg);}
-  100%{transform:translate(0,0) rotate(0deg);}
+.sonar-ring{transform-origin:center; transform-box:fill-box; animation: sonar-pulse 5.5s ease-out infinite;}
+.sonar-ring.r2{animation-delay:1.1s;}
+.sonar-ring.r3{animation-delay:2.2s;}
+.sonar-ring.r4{animation-delay:3.3s;}
+@keyframes sonar-pulse{
+  0%{transform:scale(.55); opacity:0;}
+  12%{opacity:.5;}
+  100%{transform:scale(1.5); opacity:0;}
 }
-@media (prefers-reduced-motion: reduce){.hero-whale{animation:none;}}
-@media (max-width:780px){.hero-whale{display:none;}}
+@media (prefers-reduced-motion: reduce){.sonar-ring{animation:none; opacity:.18; transform:scale(1);}}
+.hero-sonar{position:absolute; right:-6%; top:50%; width:min(880px,78vw); aspect-ratio:1; transform:translateY(-50%); overflow:visible; pointer-events:none; z-index:1;}
+@media (max-width:1024px){.hero-sonar{right:50%; transform:translate(50%,-50%); width:min(720px,110vw); top:34%;}}
 .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:60px; align-items:center; position:relative; z-index:2;}
 .hero-eyebrow{color:#d9b9a8; }
 .hero-eyebrow::before{background:#d9b9a8;}
@@ -409,6 +412,19 @@ footer{background:var(--navy); color:rgba(246,235,217,.7); padding:56px 0 30px;}
   .wrap{padding:0 20px;}
   form.contact-form{padding:24px 20px;}
 }
+
+/* ---------- red accents (portfolio) ---------- */
+.eyebrow::before{background:var(--accent);}
+.btn-primary{background:var(--accent); color:#fff;}
+.btn-primary:hover{background:var(--accent-dark); box-shadow:0 14px 28px rgba(200,50,58,.30);}
+.section-head h2::after{content:''; display:block; width:56px; height:3px; background:var(--accent); margin-top:18px; border-radius:2px;}
+.section-head.center h2::after{margin-left:auto; margin-right:auto;}
+.problem-card .num, .method-step .m-num, .result-item .rn, .results-light .result-item .rn{color:var(--accent);}
+.method-step .m-num{border-color:var(--accent);}
+.problem-close{border-left-color:var(--accent);}
+.hero-tagline .dot{background:var(--accent);}
+.edu-callout li::before{color:var(--accent);}
+.hero h1::after{content:''; display:block; width:64px; height:3px; background:var(--accent); margin-top:22px; border-radius:2px;}
 </style>
 </head>
 <body>
@@ -457,25 +473,18 @@ footer{background:var(--navy); color:rgba(246,235,217,.7); padding:56px 0 30px;}
     <path d="M-50,620 C 200,560 300,700 550,640 S 900,520 1250,600" stroke="#F8F6F0" stroke-opacity="0.12" stroke-width="2" fill="none"/>
     <path d="M-50,680 C 220,630 340,750 600,700 S 950,600 1250,660" stroke="#F8F6F0" stroke-opacity="0.09" stroke-width="2" fill="none"/>
     <path d="M-50,120 C 250,60 320,180 600,110 S 980,40 1250,100" stroke="#F8F6F0" stroke-opacity="0.07" stroke-width="1.5" fill="none"/>
-    <g transform="translate(210,290) scale(1.85)">
-      <g class="hero-whale">
-        <path d="M42,54 C30,52 14,48 -2,42 C-14,38 -24,34 -30,28 C-28,36 -22,44 -12,50 C0,57 16,60 30,60 C34,59 38,57 42,54 Z" fill="#F8F6F0" fill-opacity="0.16"/>
-        <path d="M42,60 C30,62 14,66 -2,72 C-14,76 -24,80 -30,86 C-28,78 -22,70 -12,64 C0,57 16,54 30,54 C34,55 38,57 42,60 Z" fill="#F8F6F0" fill-opacity="0.16"/>
-        <path d="M40,57 C38,50 40,44 46,40 C55,32 75,22 105,17 C145,11 180,16 202,28 C210,33 214,38 213,43 C212,47 206,52 196,56 C175,63 150,66 125,66 C95,66 65,64 48,60 C44,59 41,58 40,57 Z" fill="#F8F6F0" fill-opacity="0.16"/>
-        <path d="M98,60 C106,74 122,86 145,90 C152,91 156,89 155,85 C153,80 143,76 130,70 C118,65 106,60 96,55 Z" fill="#F8F6F0" fill-opacity="0.16"/>
-        <path d="M148,16 C151,8 161,7 166,13 C161,16 154,17 148,16 Z" fill="#F8F6F0" fill-opacity="0.16"/>
-        <circle cx="196" cy="29" r="1.8" fill="#F8F6F0" fill-opacity="0.3"/>
-      </g>
-    </g>
+  </svg>
+  <svg class="hero-sonar" viewBox="0 0 400 400" aria-hidden="true">
+    <circle class="sonar-ring r1" cx="200" cy="200" r="200" fill="none" stroke="#9CC7D2" stroke-width="1.2"/>
+    <circle class="sonar-ring r2" cx="200" cy="200" r="200" fill="none" stroke="#9CC7D2" stroke-width="1.2"/>
+    <circle class="sonar-ring r3" cx="200" cy="200" r="200" fill="none" stroke="#9CC7D2" stroke-width="1.2"/>
+    <circle class="sonar-ring r4" cx="200" cy="200" r="200" fill="none" stroke="#9CC7D2" stroke-width="1.2"/>
   </svg>
   <div class="wrap hero-grid">
     <div>
       <span class="eyebrow hero-eyebrow">Comunicação Resolutiva para Corporações</span>
       <h1>Conversas que fortalecem relações e transformam culturas.</h1>
       <p class="hero-lead">A Sonare desenvolve líderes e equipes para dialogar com mais clareza, empatia e responsabilidade, transformando desafios de comunicação em colaboração, confiança e resultados.</p>
-      <div class="hero-pills">
-        <span>Liderança</span><span>Equipes</span><span>Cultura</span><span>Prevenção</span>
-      </div>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="https://wa.me/5596981000802?text=Ol%C3%A1%2C%20Vanessa!%20Conheci%20a%20Sonare%20pelo%20site%20e%20gostaria%20de%20conversar%20sobre%20uma%20solu%C3%A7%C3%A3o%20de%20Comunica%C3%A7%C3%A3o%20Resolutiva%20para%20minha%20organiza%C3%A7%C3%A3o." target="_blank" rel="noopener">Falar com a Sonare</a>
         <a class="btn btn-ghost-light" href="#solucoes">Conhecer as soluções</a>
@@ -627,9 +636,6 @@ footer{background:var(--navy); color:rgba(246,235,217,.7); padding:56px 0 30px;}
       <div class="method-step"><span class="m-num">04</span><span class="label">Aplicar</span><span class="d">Trabalhar situações reais do cotidiano profissional.</span></div>
       <div class="method-step"><span class="m-num">05</span><span class="label">Sustentar</span><span class="d">Acompanhar a consolidação das novas práticas.</span></div>
       <div class="method-line"></div>
-    </div>
-    <div class="method-res reveal">
-      <span>Rodas de diálogo</span><span>Dinâmicas cooperativas</span><span>Estudos de caso</span><span>Simulações</span><span>Exercícios de escuta</span><span>Reflexões orientadas</span><span>Aplicação em desafios reais</span><span>Acompanhamento próximo</span>
     </div>
   </div>
 </section>
